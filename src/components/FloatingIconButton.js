@@ -15,36 +15,31 @@ import Feather from 'react-native-vector-icons/Feather';
 const screenWidth = Math.round(Dimensions.get('screen').width);
 const screenHeight = Math.round(Dimensions.get('screen').height);
 
-const FloatingIconButton = () => {
-  const [data, setData] = useState({
-    isShow: false,
-  });
-
-  const isShowModal = val => {
-    setData({
-      ...data,
-      isShow: val,
-    });
-  };
-
+let arrs = [];
+export const FloatingIconButton = ({isShowModal}) => {
+  // console.log(personalData);
+  // console.log(data.name);
+  // console.log(data.address);
+  // console.log(arrs);
+  // console.log(submitData);
   return (
-    <View style={styles.mainContainer}>
-      <FormInput isShow={data.isShow} buttonShow={isShowModal} />
-      <TouchableOpacity
-        style={styles.iconButton}
-        onPress={() => setData({...data, isShow: !data.isShow})}>
-        <Feather name="plus" color="blue" size={70} />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={styles.iconButton} onPress={() => isShowModal()}>
+      <Feather name="plus" color="blue" size={70} />
+    </TouchableOpacity>
   );
 };
 
-const FormInput = ({isShow, buttonShow}) => {
+export const FormInput = ({
+  isShow,
+  submitData,
+  handleChangeName,
+  handleChangeAddress,
+}) => {
   return (
     <Modal
       animationType="fade"
       transparent={true}
-      visible={isShow}
+      visible={isShow()}
       hardwareAccelerated={true}
       onRequestClose={() => {
         Alert.alert('Modal has been closed');
@@ -54,17 +49,25 @@ const FormInput = ({isShow, buttonShow}) => {
           <Text style={styles.textLabel}>Name</Text>
           <View style={styles.formContainer}>
             <FontAwesome name="user-o" color="red" size={25} />
-            <TextInput placeholder="Your Name" style={styles.textInput} />
+            <TextInput
+              placeholder="Your Name"
+              style={styles.textInput}
+              onChangeText={text => handleChangeName(text)}
+            />
           </View>
           <Text style={styles.textLabel}>Address</Text>
           <View style={styles.formContainer}>
             <Feather name="map-pin" color="red" size={25} />
-            <TextInput placeholder="Your Address" style={styles.textInput} />
+            <TextInput
+              placeholder="Your Address"
+              style={styles.textInput}
+              onChangeText={text => handleChangeAddress(text)}
+            />
           </View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonSubmit}
-              onPress={() => buttonShow(!isShow)}>
+              onPress={() => submitData()}>
               <Text style={{fontSize: 18}}>Submit</Text>
             </TouchableOpacity>
           </View>
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     borderRadius: 20,
-    height: screenHeight - 500,
+    height: screenHeight - 570,
     width: screenWidth - 120,
     backgroundColor: 'white',
     justifyContent: 'center',
@@ -133,4 +136,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-export default FloatingIconButton;
