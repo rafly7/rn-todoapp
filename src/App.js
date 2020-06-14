@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {FloatingIconButton, FormInput} from './components/FloatingIconButton';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 let arrs = [];
 const App = () => {
   const [data, setData] = useState({
@@ -35,6 +42,15 @@ const App = () => {
     return data.isShow;
   };
 
+  const deleteData = index => {
+    console.log(index + 'index');
+    data.personal_data.splice(index, 1);
+    setData({
+      ...data,
+      personal_data: data.personal_data,
+    });
+  };
+
   // console.log(personalData);
   // console.log(data.name);
   // console.log(data.address);
@@ -48,7 +64,7 @@ const App = () => {
     {name: 'rafly', address: 'Bip'},
     {name: 'rafly', address: 'Bip'},
   ];
-  let personalDatas = data.personal_data.map(key => {
+  let personalDatas = data.personal_data.map((key, index) => {
     return (
       <View
         style={{
@@ -57,15 +73,26 @@ const App = () => {
           backgroundColor: 'white',
           borderRadius: 5,
           marginBottom: 15,
-          paddingLeft: 10,
-          justifyContent: 'space-evenly',
+          flexDirection: 'row',
         }}>
-        <Text style={{fontSize: 18}}>Name: {key.name}</Text>
-        <Text style={{fontSize: 18}}>Address: {key.address}</Text>
+        <View
+          style={{
+            flex: 3,
+            backgroundColor: '#74b9ff',
+            justifyContent: 'space-evenly',
+            paddingLeft: 20,
+          }}>
+          <Text style={{fontSize: 18}}>Name: {key.name}</Text>
+          <Text style={{fontSize: 18}}>Address: {key.address}</Text>
+        </View>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableOpacity onPress={() => deleteData(index)}>
+            <FontAwesome5 name="trash-alt" size={40} color="#d63031" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   });
-
   const submitData = () => {
     switch (0) {
       case data.name.length:
@@ -91,7 +118,8 @@ const App = () => {
       </View>
       <View style={styles.contentContainer}>
         <ScrollView>
-          {personalDatas.length === 0 ? <Text>Empty Data</Text> : personalDatas}
+          {/* {personalDatas} */}
+          {personalDatas.length === 0 ? <EmptyData /> : personalDatas}
         </ScrollView>
         <View style={{flex: 1}}>
           <FormInput
@@ -108,6 +136,14 @@ const App = () => {
   );
 };
 
+const EmptyData = () => {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{fontSize: 14}}>Empty Data</Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -117,7 +153,7 @@ const styles = StyleSheet.create({
     flex: 0.5,
     paddingHorizontal: 20,
     justifyContent: 'flex-end',
-    marginVertical: 40
+    marginVertical: 40,
   },
   headerText: {
     fontSize: 25,
