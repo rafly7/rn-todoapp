@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {IconButton, Colors, TextInput} from 'react-native-paper';
+import TextInputBloc from '../bloc/TextInputBloc';
+import BlocBuilder from 'bloc-builder-react';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -35,6 +37,10 @@ export const FormInput = ({
   handleChangeName,
   handleChangeAddress,
 }) => {
+  let textInputBloc = new TextInputBloc();
+  const subc = () => {
+    
+  };
   return (
     <Modal
       animationType="fade"
@@ -52,7 +58,7 @@ export const FormInput = ({
             <TextInput
               placeholder="Your Name"
               style={styles.textInput}
-              onChangeText={text => handleChangeName(text)}
+              onChangeText={text => textInputBloc.addressInput(text)}
             />
           </View>
           <Text style={styles.textLabel}>Address</Text>
@@ -64,12 +70,12 @@ export const FormInput = ({
               onChangeText={text => handleChangeAddress(text)}
             />
           </View>
-          
+
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonSubmit}
               onPress={() => submitData()}>
-              <Text style={{fontSize: 18, color: "#ecf0f1"}}>Submit</Text>
+              <Text style={{fontSize: 18, color: '#ecf0f1'}}>Submit</Text>
             </TouchableOpacity>
           </View>
         </View>
