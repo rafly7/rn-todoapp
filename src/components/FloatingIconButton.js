@@ -24,7 +24,7 @@ export const FloatingIconButton = ({isShowModal}) => {
   // console.log(submitData);
   return (
     <TouchableOpacity style={styles.iconButton} onPress={() => isShowModal()}>
-      <Feather name="plus" color="blue" size={70} />
+      <Feather name="plus" color="#3498db" size={70} />
     </TouchableOpacity>
   );
 };
@@ -48,7 +48,7 @@ export const FormInput = ({
         <View style={styles.modalView}>
           <Text style={styles.textLabel}>Name</Text>
           <View style={styles.formContainer}>
-            <FontAwesome name="user-o" color="red" size={25} />
+            <FontAwesome name="user-o" color="#2980b9" size={25} />
             <TextInput
               placeholder="Your Name"
               style={styles.textInput}
@@ -57,18 +57,19 @@ export const FormInput = ({
           </View>
           <Text style={styles.textLabel}>Address</Text>
           <View style={styles.formContainer}>
-            <Feather name="map-pin" color="red" size={25} />
+            <Feather name="map-pin" color="#2980b9" size={25} />
             <TextInput
               placeholder="Your Address"
               style={styles.textInput}
               onChangeText={text => handleChangeAddress(text)}
             />
           </View>
+          
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonSubmit}
               onPress={() => submitData()}>
-              <Text style={{fontSize: 18}}>Submit</Text>
+              <Text style={{fontSize: 18, color: "#ecf0f1"}}>Submit</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     margin: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#74b9ff',
     borderRadius: 140,
     width: 70,
     height: 70,
@@ -101,12 +102,12 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     borderRadius: 20,
-    height: screenHeight - 570,
+    height: screenHeight - 500,
     width: screenWidth - 120,
-    backgroundColor: 'white',
+    backgroundColor: '#ecf0f1',
     justifyContent: 'center',
     padding: 20,
-    opacity: 0.75,
+    opacity: 0.95,
   },
   textLabel: {
     fontSize: 18,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   buttonSubmit: {
     flex: 1,
     borderRadius: 30,
-    backgroundColor: 'blue',
+    backgroundColor: '#2ecc71',
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -48,7 +48,7 @@ const App = () => {
     {name: 'rafly', address: 'Bip'},
     {name: 'rafly', address: 'Bip'},
   ];
-  let personalDatas = arr.map(key => {
+  let personalDatas = data.personal_data.map(key => {
     return (
       <View
         style={{
@@ -57,6 +57,7 @@ const App = () => {
           backgroundColor: 'white',
           borderRadius: 5,
           marginBottom: 15,
+          paddingLeft: 10,
           justifyContent: 'space-evenly',
         }}>
         <Text style={{fontSize: 18}}>Name: {key.name}</Text>
@@ -66,22 +67,22 @@ const App = () => {
   });
 
   const submitData = () => {
-    arrs.push({name: data.name, address: data.address});
+    switch (0) {
+      case data.name.length:
+      case data.address.length:
+        data.personal_data.length - 1;
+        break;
+      default:
+        data.personal_data.push({name: data.name, address: data.address});
+    }
     setData({
       ...data,
-      personal_data: data.personal_data.push({
-        name: 'rafly',
-        address: 'Bip',
-      }),
       name: '',
       address: '',
       isShow: !data.isShow,
     });
   };
-  console.log(data.name);
-  console.log(data.address);
-  // console.log(arrs);
-  console.log(data.personal_data);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.header}>
@@ -89,7 +90,9 @@ const App = () => {
         <Text style={styles.headerText}>App</Text>
       </View>
       <View style={styles.contentContainer}>
-        <ScrollView>{personalDatas}</ScrollView>
+        <ScrollView>
+          {personalDatas.length === 0 ? <Text>Empty Data</Text> : personalDatas}
+        </ScrollView>
         <View style={{flex: 1}}>
           <FormInput
             isShow={isShow}
@@ -108,20 +111,22 @@ const App = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#2ecc71',
   },
   header: {
-    flex: 1,
+    flex: 0.5,
     paddingHorizontal: 20,
+    justifyContent: 'flex-end',
+    marginVertical: 40
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
   },
   contentContainer: {
     flex: 3,
-    backgroundColor: 'green',
+    backgroundColor: '#3498db',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     padding: 20,
