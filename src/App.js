@@ -6,9 +6,20 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {FloatingIconButton, FormInput} from './components/FloatingIconButton';
+import FloatingIconButton from './components/FloatingIconButton';
+import FormInput from './components/FormInput';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-let arrs = [];
+import {Provider} from 'react-redux';
+import {createStore, combineReducers} from 'redux';
+import FormReducer from './reducer/formInputReducer';
+import IsShowReducer from './reducer/isShowReducer';
+
+const reducers = combineReducers({
+  val: FormReducer,
+  show: IsShowReducer,
+});
+
+const store = createStore(reducers);
 const App = () => {
   const [data, setData] = useState({
     personal_data: [],
@@ -51,30 +62,9 @@ const App = () => {
     });
   };
 
-  // console.log(personalData);
-  // console.log(data.name);
-  // console.log(data.address);
-  // console.log(arrs);
-  // console.log(submitData);
-  let arr = [
-    {name: 'rafly', address: 'Bip'},
-    {name: 'rafly', address: 'Bip'},
-    {name: 'rafly', address: 'Bip'},
-    {name: 'rafly', address: 'Bip'},
-    {name: 'rafly', address: 'Bip'},
-    {name: 'rafly', address: 'Bip'},
-  ];
   let personalDatas = data.personal_data.map((key, index) => {
     return (
-      <View
-        style={{
-          flex: 1,
-          height: 90,
-          backgroundColor: 'white',
-          borderRadius: 5,
-          marginBottom: 15,
-          flexDirection: 'row',
-        }}>
+      <View style={styles.cardsContainer}>
         <View
           style={{
             flex: 3,
@@ -109,30 +99,34 @@ const App = () => {
       isShow: !data.isShow,
     });
   };
-
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Todo List</Text>
-        <Text style={styles.headerText}>App</Text>
-      </View>
-      <View style={styles.contentContainer}>
-        <ScrollView>
-          {/* {personalDatas} */}
-          {personalDatas.length === 0 ? <EmptyData /> : personalDatas}
-        </ScrollView>
-        <View style={{flex: 1}}>
-          <FormInput
-            isShow={isShow}
-            submitData={submitData}
-            handleChangeName={handleChangeName}
-            handleChangeAddress={handleChangeAddress}
-          />
-          <FloatingIconButton isShowModal={isShowModal} />
+    <Provider store={store}>
+      <View style={styles.mainContainer}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Todo List</Text>
+          <Text style={styles.headerText}>App</Text>
         </View>
-        {/* <FloatingIconButton submitData={submitData} /> */}
+        <View style={styles.contentContainer}>
+          <ScrollView>
+            {/* {personalDatas} */}
+            {personalDatas.length === 0 ? <EmptyData /> : personalDatas}
+            {/* {ListData(data.personal_data, deleteData)} */}
+          </ScrollView>
+          <View style={{flex: 1}}>
+            <FormInput
+            // isShow={isShow}
+            // submitData={submitData}
+            // handleChangeName={handleChangeName}
+            // handleChangeAddress={handleChangeAddress}
+            />
+            <FloatingIconButton
+            // isShowModal={isShowModal}
+            />
+          </View>
+          {/* <FloatingIconButton submitData={submitData} /> */}
+        </View>
       </View>
-    </View>
+    </Provider>
   );
 };
 
@@ -166,6 +160,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     padding: 20,
+  },
+  cardsContainer: {
+    flex: 1,
+    height: 90,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginBottom: 15,
+    flexDirection: 'row',
   },
 });
 

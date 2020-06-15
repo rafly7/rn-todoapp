@@ -1,93 +1,20 @@
-import React, {useState} from 'react';
-import {IconButton, Colors, TextInput} from 'react-native-paper';
-import TextInputBloc from '../bloc/TextInputBloc';
-import BlocBuilder from 'bloc-builder-react';
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Modal,
-  Alert,
-  View,
-  Text,
-  Dimensions,
-} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import React from 'react';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import {connect} from 'react-redux';
+import isShowModal from '../action/isShowAction';
 
-const screenWidth = Math.round(Dimensions.get('screen').width);
-const screenHeight = Math.round(Dimensions.get('screen').height);
-
-let arrs = [];
-export const FloatingIconButton = ({isShowModal}) => {
-  // console.log(personalData);
-  // console.log(data.name);
-  // console.log(data.address);
-  // console.log(arrs);
-  // console.log(submitData);
+const FloatingIconButton = props => {
   return (
-    <TouchableOpacity style={styles.iconButton} onPress={() => isShowModal()}>
+    <TouchableOpacity
+      style={styles.iconButton}
+      onPress={() => props.isShowModal()}>
       <Feather name="plus" color="#3498db" size={70} />
     </TouchableOpacity>
   );
 };
 
-export const FormInput = ({
-  isShow,
-  submitData,
-  handleChangeName,
-  handleChangeAddress,
-}) => {
-  let textInputBloc = new TextInputBloc();
-  const subc = () => {
-    
-  };
-  return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={isShow()}
-      hardwareAccelerated={true}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed');
-      }}>
-      <View style={styles.dialogContainer}>
-        <View style={styles.modalView}>
-          <Text style={styles.textLabel}>Name</Text>
-          <View style={styles.formContainer}>
-            <FontAwesome name="user-o" color="#2980b9" size={25} />
-            <TextInput
-              placeholder="Your Name"
-              style={styles.textInput}
-              onChangeText={text => textInputBloc.addressInput(text)}
-            />
-          </View>
-          <Text style={styles.textLabel}>Address</Text>
-          <View style={styles.formContainer}>
-            <Feather name="map-pin" color="#2980b9" size={25} />
-            <TextInput
-              placeholder="Your Address"
-              style={styles.textInput}
-              onChangeText={text => handleChangeAddress(text)}
-            />
-          </View>
-
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.buttonSubmit}
-              onPress={() => submitData()}>
-              <Text style={{fontSize: 18, color: '#ecf0f1'}}>Submit</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </Modal>
-  );
-};
-
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-  },
   iconButton: {
     right: 0,
     bottom: 0,
@@ -98,48 +25,14 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
   },
-  dialogContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // marginVertical: 100,
-    // marginHorizontal: 100,
-  },
-  modalView: {
-    margin: 20,
-    borderRadius: 20,
-    height: screenHeight - 500,
-    width: screenWidth - 120,
-    backgroundColor: '#ecf0f1',
-    justifyContent: 'center',
-    padding: 20,
-    opacity: 0.95,
-  },
-  textLabel: {
-    fontSize: 18,
-  },
-  formContainer: {
-    flexDirection: 'row',
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textInput: {
-    height: 40,
-    marginLeft: 10,
-    flex: 1,
-    backgroundColor: 'transparent',
-    paddingLeft: -5,
-  },
-  buttonContainer: {
-    marginTop: 25,
-    flexDirection: 'row',
-    height: 50,
-  },
-  buttonSubmit: {
-    flex: 1,
-    borderRadius: 30,
-    backgroundColor: '#2ecc71',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
+const mapStateToProps = state => {
+  return {
+    show: state.show,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {isShowModal},
+)(FloatingIconButton);
