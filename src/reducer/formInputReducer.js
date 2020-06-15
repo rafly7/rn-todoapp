@@ -1,3 +1,5 @@
+import {address_input, name_input} from '../utils/constType';
+
 const initialstate = {
   name: '',
   address: '',
@@ -5,12 +7,12 @@ const initialstate = {
 
 export default (state = initialstate, action) => {
   switch (action.type) {
-    case 'NAME_INPUT':
+    case name_input:
       return {
         ...state,
         name: action.payload,
       };
-    case 'ADDRESS_INPUT':
+    case address_input:
       return {
         ...state,
         address: action.payload,

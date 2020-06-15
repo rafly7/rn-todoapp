@@ -17,7 +17,6 @@ import isShowModal from '../action/isShowAction';
 
 const screenHeight = Math.round(Dimensions.get('screen').height);
 const screenWidth = Math.round(Dimensions.get('screen').width);
-// const FormInput = (props) => {
 const FormInput = ({
   handleNameInput,
   handleAddressInput,
@@ -26,9 +25,6 @@ const FormInput = ({
   address,
   show,
 }) => {
-  // console.log(props);
-  // console.log(show);
-  // console.log(props.name);
   return (
     <Modal
       animationType="fade"

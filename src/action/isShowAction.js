@@ -1,6 +1,8 @@
+import {is_show} from '../utils/constType';
+
 const isShowModal = () => {
   return {
-    type: 'IS_SHOW',
+    type: is_show,
   };
 };
 export default isShowModal;
