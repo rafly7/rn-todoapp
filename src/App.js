@@ -13,10 +13,14 @@ import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import FormReducer from './reducer/formInputReducer';
 import IsShowReducer from './reducer/isShowReducer';
+import AddDataReducer from './reducer/addDataReducer';
+
+import StateData from '../src/components/StateData';
 
 const reducers = combineReducers({
   val: FormReducer,
   show: IsShowReducer,
+  add: AddDataReducer,
 });
 
 const store = createStore(reducers);
@@ -58,12 +62,17 @@ const App = () => {
           <Text style={styles.headerText}>App</Text>
         </View>
         <View style={styles.contentContainer}>
-          <ScrollView>
-            {/* {personalDatas} */}
-            {personalDatas.length === 0 ? <EmptyData /> : personalDatas}
-            {/* {ListData(data.personal_data, deleteData)} */}
-          </ScrollView>
-          <View style={{flex: 1}}>
+          {/* <ScrollView> */}
+          {/* {personalDatas} */}
+          {/* {personalDatas.length === 0 ? <EmptyData /> : personalDatas} */}
+          {/* <DataList /> */}
+          {/* {ListData(data.personal_data, deleteData)} */}
+          {/* </ScrollView> */}
+          {/* <View style={{flex: 1, alignItems: 'center'}}> */}
+          {/* <Text>Hello</Text> */}
+          {/* </View> */}
+          <StateData />
+          <View style={{flex: 0.9}}>
             <FormInput />
             <FloatingIconButton />
           </View>
@@ -104,6 +113,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     padding: 20,
+    justifyContent: 'center',
   },
   cardsContainer: {
     flex: 1,

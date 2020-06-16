@@ -1,5 +1,4 @@
 import {address_input, name_input} from '../utils/constType';
-
 const initialstate = {
   name: '',
   address: '',

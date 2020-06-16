@@ -12,24 +12,36 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {TextInput} from 'react-native-paper';
 import {connect} from 'react-redux';
-import {handleNameInput, handleAddressInput} from '../action/formInputAction';
 import isShowModal from '../action/isShowAction';
+import {handleNameInput, handleAddressInput, addData} from '../action/index';
 
 const screenHeight = Math.round(Dimensions.get('screen').height);
 const screenWidth = Math.round(Dimensions.get('screen').width);
-const FormInput = ({
-  handleNameInput,
-  handleAddressInput,
-  isShowModal,
-  name,
-  address,
-  show,
-}) => {
+
+const FormInput = props => {
+  // console.log(props);
+  // const FormInput = ({
+  //   handleNameInput,
+  //   handleAddressInput,
+  //   isShowModal,
+  //   name,
+  //   address,
+  //   show,
+  // }) => {
+  // console.log(props);
+  const SubmitData = () => {
+    props.addData(props.name, props.address);
+    props.handleNameInput('');
+    props.handleAddressInput('');
+    props.isShowModal();
+    // console.log(props);
+  };
+
   return (
     <Modal
       animationType="fade"
       transparent={true}
-      visible={show}
+      visible={props.show}
       hardwareAccelerated={true}
       onRequestClose={() => {
         Alert.alert('Modal has been closed');
@@ -37,30 +49,30 @@ const FormInput = ({
       <View style={styles.dialogContainer}>
         <View style={styles.modalView}>
           <Text style={styles.textLabel}>Name</Text>
-          <Text>{name}</Text>
+          {/* <Text>{name}</Text> */}
           <View style={styles.formContainer}>
             <FontAwesome name="user-o" color="#2980b9" size={25} />
             <TextInput
               placeholder="Your Name"
               style={styles.textInput}
-              onChangeText={text => handleNameInput(text)}
+              onChangeText={text => props.handleNameInput(text)}
             />
           </View>
           <Text style={styles.textLabel}>Address</Text>
-          <Text>{address}</Text>
+          {/* <Text>{address}</Text> */}
           <View style={styles.formContainer}>
             <Feather name="map-pin" color="#2980b9" size={25} />
             <TextInput
               placeholder="Your Address"
               style={styles.textInput}
-              onChangeText={text => handleAddressInput(text)}
+              onChangeText={text => props.handleAddressInput(text)}
             />
           </View>
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonSubmit}
-              onPress={() => isShowModal()}>
+              onPress={() => SubmitData()}>
               <Text style={{fontSize: 18, color: '#ecf0f1'}}>Submit</Text>
             </TouchableOpacity>
           </View>
@@ -124,5 +136,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {handleNameInput, handleAddressInput, isShowModal},
+  {handleNameInput, handleAddressInput, isShowModal, addData},
 )(FormInput);
