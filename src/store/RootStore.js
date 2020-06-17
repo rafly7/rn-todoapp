@@ -1,6 +1,6 @@
-import FormReducer from '../reducer/formInputReducer';
-import IsShowReducer from '../reducer/isShowReducer';
-import AddDataReducer from '../reducer/addDataReducer';
+import FormReducer from '../reducer/FormInputReducer';
+import IsShowReducer from '../reducer/IsShowReducer';
+import AddDataReducer from '../reducer/DataReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({

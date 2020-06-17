@@ -1,2 +1,2 @@
 export * from './DataAction';
-export * from './formInputAction';
+export * from './FormInputAction';
