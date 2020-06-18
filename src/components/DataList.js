@@ -13,18 +13,6 @@ import {addData, deleteData} from '../action/DataAction';
 const screenHeight = Math.round(Dimensions.get('screen').height);
 const screenWidth = Math.round(Dimensions.get('screen').width);
 const DataList = props => {
-  console.log(screenWidth);
-  //     console.log(props);
-  //   return (
-  //     <View>
-  //       {typeof props.data === undefined ? (
-  //         <Text>hello</Text>
-  //       ) : (
-  //         <Text>world</Text>
-  //       )}
-  //     </View>
-  //   );
-  console.log(props);
   return props.add.map((key, index) => {
     return (
       <View style={styles.cardsContainer}>

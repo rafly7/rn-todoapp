@@ -387,6 +387,7 @@ exports[`renders correctly 1`] = `
                     "opacity": 1,
                   }
                 }
+                testID="submit-data"
               >
                 <Text
                   style={

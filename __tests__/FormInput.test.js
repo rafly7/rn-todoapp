@@ -1,9 +1,11 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
+import * as RnTest from 'react-native-testing-library';
 import {connect, Provider} from 'react-redux';
 import {createStore} from 'redux';
 import RootReducer from '../src/store/RootStore';
 import FormInput from '../src/components/FormInput';
+import rootReducer from '../src/store/RootStore';
 
 function renderWithRedux(
   ui,
@@ -28,3 +30,19 @@ it('FormInput address Can render with redux with defaults', () => {
   fireEvent.changeText(getByTestId('address-input'), address);
   expect(getByTestId('address-input').props.value).toEqual(address);
 });
+
+// describe('Submit Data component test', () => {
+//   test('should submit data', () => {
+//     const store = createStore(rootReducer);
+
+//     const component = (
+//       <Provider store={store}>
+//         <FormInput />
+//       </Provider>
+//     );
+
+//     const {getByTestId} = RnTest.render(component);
+//     RnTest.fireEvent.press(getByTestId("submit-data"))
+//     console.log(store.dispatch());
+//   });
+// })

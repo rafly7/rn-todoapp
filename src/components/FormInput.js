@@ -58,6 +58,7 @@ const FormInput = props => {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonSubmit}
+              testID="submit-data"
               onPress={() => SubmitData()}>
               <Text style={{fontSize: 18, color: '#ecf0f1'}}>Submit</Text>
             </TouchableOpacity>

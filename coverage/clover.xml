@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1592386999746" clover="3.2.0">
-  <project timestamp="1592386999746" name="All files">
-    <metrics statements="73" coveredstatements="60" conditionals="16" coveredconditionals="15" methods="24" coveredmethods="17" elements="113" coveredelements="92" complexity="0" loc="73" ncloc="73" packages="6" files="14" classes="14"/>
+<coverage generated="1592449345093" clover="3.2.0">
+  <project timestamp="1592449345093" name="All files">
+    <metrics statements="71" coveredstatements="60" conditionals="16" coveredconditionals="15" methods="24" coveredmethods="17" elements="111" coveredelements="92" complexity="0" loc="71" ncloc="71" packages="6" files="14" classes="14"/>
     <package name="src">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.js" path="C:\Users\Rafly\vscode\Reactnative\TaskOffice\todoapp\src\App.js">
@@ -38,28 +38,26 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="38" coveredstatements="25" conditionals="2" coveredconditionals="1" methods="15" coveredmethods="8"/>
+      <metrics statements="36" coveredstatements="25" conditionals="2" coveredconditionals="1" methods="15" coveredmethods="8"/>
       <file name="DataList.js" path="C:\Users\Rafly\vscode\Reactnative\TaskOffice\todoapp\src\components\DataList.js">
-        <metrics statements="11" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <metrics statements="9" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
       </file>
       <file name="FloatingIconButton.js" path="C:\Users\Rafly\vscode\Reactnative\TaskOffice\todoapp\src\components\FloatingIconButton.js">
         <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
       </file>
       <file name="FormInput.js" path="C:\Users\Rafly\vscode\Reactnative\TaskOffice\todoapp\src\components\FormInput.js">
@@ -75,10 +73,10 @@
         <line num="29" count="5" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="71" count="2" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="116" count="5" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="116" count="2" type="stmt"/>
+        <line num="117" count="5" type="stmt"/>
       </file>
       <file name="StateData.js" path="C:\Users\Rafly\vscode\Reactnative\TaskOffice\todoapp\src\components\StateData.js">
         <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
