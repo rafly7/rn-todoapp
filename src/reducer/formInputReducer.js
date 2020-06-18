@@ -1,7 +1,8 @@
-import {address_input, name_input} from '../utils/constType';
+import {address_input, name_input, date_input} from '../utils/constType';
 const initialstate = {
   name: '',
   address: '',
+  date: '',
 };
 
 export default (state = initialstate, action) => {
@@ -15,6 +16,11 @@ export default (state = initialstate, action) => {
       return {
         ...state,
         address: action.payload,
+      };
+    case date_input:
+      return {
+        ...state,
+        date: action.payload,
       };
     default:
       return state;

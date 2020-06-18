@@ -1,40 +1,14 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
-import {addData, deleteData} from '../action/DataAction';
+import {deleteData} from '../action/DataAction';
 
-const screenHeight = Math.round(Dimensions.get('screen').height);
-const screenWidth = Math.round(Dimensions.get('screen').width);
 const DataList = props => {
-  console.log(screenWidth);
-  //     console.log(props);
-  //   return (
-  //     <View>
-  //       {typeof props.data === undefined ? (
-  //         <Text>hello</Text>
-  //       ) : (
-  //         <Text>world</Text>
-  //       )}
-  //     </View>
-  //   );
-  console.log(props);
   return props.add.map((key, index) => {
     return (
       <View style={styles.cardsContainer}>
-        <View
-          style={{
-            flex: 3,
-            backgroundColor: '#74b9ff',
-            justifyContent: 'space-evenly',
-            paddingLeft: 20,
-          }}>
+        <View style={styles.cardInfo}>
           <Text style={{fontSize: 18}}>Name: {key.name}</Text>
           <Text style={{fontSize: 18}}>Address: {key.address}</Text>
         </View>
@@ -52,10 +26,18 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
     height: 90,
-    backgroundColor: 'white',
+    backgroundColor: 'green',
     borderRadius: 5,
     marginBottom: 15,
     flexDirection: 'row',
+  },
+  cardInfo: {
+    flex: 3,
+    backgroundColor: '#74b9ff',
+    justifyContent: 'space-evenly',
+    paddingLeft: 20,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
 });
 
