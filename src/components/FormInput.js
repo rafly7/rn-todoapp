@@ -1,8 +1,5 @@
 import React from 'react';
-import {View, Modal, Text, StyleSheet, Dimensions} from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {TextInput} from 'react-native-paper';
+import {View, Modal, StyleSheet, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import {handleNameInput, handleAddressInput} from '../action/index';
 import SubmitButton from './SubmitButton';
