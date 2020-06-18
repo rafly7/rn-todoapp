@@ -18,35 +18,6 @@ const FormInput = props => {
       hardwareAccelerated={true}>
       <View style={styles.dialogContainer}>
         <View style={styles.modalView}>
-          <Text style={styles.textLabel}>Name</Text>
-          <View style={styles.formContainer}>
-            <FontAwesome name="user-o" color="#2980b9" size={25} />
-            <TextInput
-              placeholder="Your Name"
-              style={styles.textInput}
-              testID="name-input"
-              onChangeText={text => props.handleNameInput(text)}
-            />
-          </View>
-          <Text style={styles.textLabel}>Address</Text>
-          <View style={styles.formContainer}>
-            <Feather name="map-pin" color="#2980b9" size={25} />
-            <TextInput
-              placeholder="Your Address"
-              style={styles.textInput}
-              testID="address-input"
-              onChangeText={text => props.handleAddressInput(text)}
-            />
-          </View>
-
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.buttonSubmit}
-              testID="submit-data"
-              onPress={() => SubmitData()}>
-              <Text style={{fontSize: 18, color: '#ecf0f1'}}>Submit</Text>
-            </TouchableOpacity>
-          </View>
           <TextInputFrom />
           <SubmitButton />
         </View>
