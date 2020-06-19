@@ -1,20 +1,36 @@
 import React from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { connect } from 'react-redux';
-import { handleDate } from '../action';
+import {connect} from 'react-redux';
+import {handleDate} from '../action';
 
 const DatePicker = props => {
-  return <DateTimePicker
-    mode="date"
-    display="default"
-    onChange={}
-  />;
-}
+  const onChange = (event, selectDate) => {
+    const currentDate = selectDate || props.date;
+    props.handleCancel(false);
+    console.log(typeof selectDate !== 'undefined');
+    if (typeof selectDate !== 'undefined') {
+      props.initValue(true);
+    }
+    props.handleDate(currentDate);
+  };
+
+  return (
+    <DateTimePicker
+      mode="date"
+      value={props.date}
+      display="default"
+      onChange={onChange}
+    />
+  );
+};
 
 const mapStateToProps = state => {
-    return {
-        date: state.val.date
-    }
-}
+  return {
+    date: state.val.date,
+  };
+};
 
-export default connect(mapStateToProps,{handleDate})(DatePicker)
+export default connect(
+  mapStateToProps,
+  {handleDate},
+)(DatePicker);

@@ -10,7 +10,7 @@ const FloatingIconButton = props => {
       testID="is-show-form"
       style={styles.iconButton}
       onPress={() => props.isShowModal()}>
-      <Feather name="plus" color="#3498db" size={70} />
+      <Feather name="plus" color="white" size={70} />
     </TouchableOpacity>
   );
 };
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     margin: 10,
-    backgroundColor: '#74b9ff',
+    backgroundColor: '#2ecc71',
     borderRadius: 140,
     width: 70,
     height: 70,
