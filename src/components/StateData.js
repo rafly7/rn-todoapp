@@ -13,7 +13,7 @@ const StateData = props => {
   } else {
     return (
       <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
-        <Text style={{fontSize: 15, color: '#ecf0f1'}}>Empty Data</Text>
+        <Text style={{fontSize: 15}}>Empty Data</Text>
       </View>
     );
   }

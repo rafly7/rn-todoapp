@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {deleteData} from '../action/DataAction';
 
 const DataList = props => {
+  console.log(props.add);
   return props.add.map((key, index) => {
     return (
       <View style={styles.cardsContainer}>
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
     height: 90,
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
     borderRadius: 5,
     marginBottom: 15,
     flexDirection: 'row',

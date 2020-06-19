@@ -11,6 +11,7 @@ export default (state = [], action) => {
         return [
           ...state,
           {
+            id: action.payload_id,
             name: action.payload_name,
             address: action.payload_address,
             date: action.payload_date,

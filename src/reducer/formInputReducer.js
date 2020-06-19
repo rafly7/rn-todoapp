@@ -1,8 +1,9 @@
 import {address_input, name_input, date_input} from '../utils/constType';
+
 const initialstate = {
   name: '',
   address: '',
-  date: '',
+  date: new Date(),
 };
 
 export default (state = initialstate, action) => {

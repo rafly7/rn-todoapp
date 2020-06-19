@@ -14,7 +14,7 @@ export const handleAddressInput = val => {
   };
 };
 
-export const handleDate = (event, selectedDate) => {
+export const handleDate = selectedDate => {
   return {
     type: date_input,
     payload: selectedDate,
