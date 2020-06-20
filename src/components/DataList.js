@@ -10,8 +10,9 @@ const DataList = props => {
     return (
       <View style={styles.cardsContainer}>
         <View style={styles.cardInfo}>
-          <Text style={{fontSize: 18}}>Name: {key.name}</Text>
-          <Text style={{fontSize: 18}}>Address: {key.address}</Text>
+          <Text style={{fontSize: 18}}>Title: {key.name}</Text>
+          {/* <Text style={{fontSize: 18}}>Address: {key.address}</Text> */}
+          <Text style={{fontSize: 18}}>{key.date}</Text>
         </View>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <TouchableOpacity onPress={() => props.deleteData(index)}>
@@ -26,7 +27,7 @@ const DataList = props => {
 const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
-    height: 90,
+    height: 60,
     // backgroundColor: 'green',
     borderRadius: 5,
     marginBottom: 15,
