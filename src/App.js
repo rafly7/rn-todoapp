@@ -20,8 +20,8 @@ const App = () => {
         <View style={styles.contentContainer}>
           <StateData />
           <View style={styles.buttonToForm}>
-            {/* <FormInput /> */}
-            <FormNote />
+            <FormInput />
+            {/* <FormNote /> */}
             <FloatingIconButton />
           </View>
         </View>

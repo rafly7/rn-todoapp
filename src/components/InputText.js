@@ -39,14 +39,16 @@ const TextInputForm = props => {
       <View style={styles.formContainer}>
         <FontAwesome name="sticky-note" color="#2980b9" size={25} />
         {/* <Feather name="map-pin" color="#2980b9" size={25} /> */}
-        <TouchableOpacity onPress={() => setShowNote(!showNote)}>
+        <TouchableOpacity
+          style={{flex: 1}}
+          onPress={() => setShowNote(!showNote)}>
           <InputNote showNote={showNote} setShowNote={setShowNote} />
           <TextInput
             placeholder="Your Notes"
-            style={styles.textInput}
+            style={styles.textInput2}
             testID="address-input"
             editable={false}
-            onChangeText={text => handleAddressInput(text)}
+            // onChangeText={text => handleAddressInput(text)}
           />
         </TouchableOpacity>
       </View>
@@ -62,7 +64,7 @@ const TextInputForm = props => {
             <DateTimePicker handleCancel={setShowDate} initValue={setValue} />
           ) : null}
           <TextInput
-            placeholder="Reminder"
+            placeholder="Reminder (optional)"
             style={styles.textInput2}
             editable={false}
             value={value ? FormatDate(props.date) : ''}
@@ -82,10 +84,9 @@ const InputNote = props => {
       hardwareAccelerated={true}>
       <View style={{flex: 1, marginTop: 20, marginHorizontal: 20}}>
         <View style={{alignItems: 'flex-end', marginBottom: 10}}>
-          <TouchableHighlight
-            onPress={() => props.setShowNote(!props.showNote)}>
+          <TouchableOpacity onPress={() => props.setShowNote(!props.showNote)}>
             <Text>SAVE</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={{flex: 1, backgroundColor: 'transparent'}}>
           <Text style={{fontSize: 22, paddingLeft: 11}}>Project1</Text>
