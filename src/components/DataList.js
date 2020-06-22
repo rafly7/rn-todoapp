@@ -1,47 +1,82 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, StyleSheet, Modal} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
 import {deleteData} from '../action/DataAction';
+import ViewNote from './ViewNote';
 
 const DataList = props => {
-  console.log(props.add);
-  return props.add.map((key, index) => {
-    return (
-      <View style={styles.cardsContainer}>
-        <View style={styles.cardInfo}>
-          <Text style={{fontSize: 18}}>Title: {key.name}</Text>
-          {/* <Text style={{fontSize: 18}}>Address: {key.address}</Text> */}
-          <Text style={{fontSize: 18}}>{key.date}</Text>
-        </View>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={() => props.deleteData(index)}>
-            <FontAwesome5 name="trash-alt" size={40} color="#d63031" />
-          </TouchableOpacity>
-        </View>
+  const [showView, setShowView] = useState(false);
+  console.log(props);
+  const {title, note, createdAt, reminderDate, reminderTime} = props.item;
+  return (
+    <View style={styles.cardsContainer}>
+      <View
+        style={[
+          styles.cardInfo,
+          {backgroundColor: props.index % 2 === 0 ? '#78e08f' : '#b8e994'},
+        ]}>
+        <Text style={{fontSize: 18}}>{title}</Text>
+        <Text style={{fontSize: 14}}>Created: {createdAt}</Text>
+        {reminderDate !== '' || reminderTime !== '' ? (
+          <Text>
+            Reminder: {reminderDate} {reminderTime}
+          </Text>
+        ) : null}
       </View>
-    );
-  });
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+        }}>
+        <TouchableOpacity onPress={() => props.deleteData(props.index)}>
+          <FontAwesome5 name="trash-alt" color="#d63031" size={30} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowView(!showView)}>
+          <ViewNote
+            title={title}
+            note={note}
+            setShowView={setShowView}
+            showView={showView}
+          />
+          <FontAwesome name="eye" color="#1e3799" size={30} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
-    height: 60,
-    // backgroundColor: 'green',
+    height: 90,
     borderRadius: 5,
     marginBottom: 15,
     flexDirection: 'row',
   },
   cardInfo: {
     flex: 3,
-    backgroundColor: '#74b9ff',
+    // backgroundColor: '#78e08f',
     justifyContent: 'space-evenly',
     paddingLeft: 20,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });
+
+{
+  /* <ViewNote
+title={title}
+note={note}
+setShowView={setShowView}
+showView={showView}
+/> */
+}
 
 const mapStateToProps = state => {
   return {
@@ -50,6 +85,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   {deleteData},
 )(DataList);

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import FloatingIconButton from './components/FloatingIconButton';
-import FormInput from './components/FormInput';
+// import FormInput from './components/FormInput';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import RootReducer from './store/RootStore';
@@ -20,8 +20,8 @@ const App = () => {
         <View style={styles.contentContainer}>
           <StateData />
           <View style={styles.buttonToForm}>
-            <FormInput />
-            {/* <FormNote /> */}
+            {/* <FormInput /> */}
+            <FormNote />
             <FloatingIconButton />
           </View>
         </View>

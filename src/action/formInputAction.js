@@ -1,15 +1,20 @@
-import {name_input, address_input, date_input} from '../utils/constType';
+import {
+  title_input,
+  note_input,
+  date_input,
+  time_input,
+} from '../utils/constType';
 
-export const handleNameInput = val => {
+export const handleTitleInput = val => {
   return {
-    type: name_input,
+    type: title_input,
     payload: val,
   };
 };
 
-export const handleAddressInput = val => {
+export const handleNoteInput = val => {
   return {
-    type: address_input,
+    type: note_input,
     payload: val,
   };
 };
@@ -18,5 +23,12 @@ export const handleDate = selectedDate => {
   return {
     type: date_input,
     payload: selectedDate,
+  };
+};
+
+export const handleTime = selectedTime => {
+  return {
+    type: time_input,
+    payload: selectedTime,
   };
 };

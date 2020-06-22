@@ -1,27 +1,38 @@
-import {address_input, name_input, date_input} from '../utils/constType';
+import {
+  title_input,
+  note_input,
+  date_input,
+  time_input,
+} from '../utils/constType';
 
 const initialstate = {
-  name: '',
-  address: '',
+  title: '',
+  note: '',
   date: new Date(),
+  time: new Date(),
 };
 
 export default (state = initialstate, action) => {
   switch (action.type) {
-    case name_input:
+    case title_input:
       return {
         ...state,
-        name: action.payload,
+        title: action.payload,
       };
-    case address_input:
+    case note_input:
       return {
         ...state,
-        address: action.payload,
+        note: action.payload,
       };
     case date_input:
       return {
         ...state,
         date: action.payload,
+      };
+    case time_input:
+      return {
+        ...state,
+        time: action.payload,
       };
     default:
       return state;
