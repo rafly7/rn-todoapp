@@ -8,8 +8,7 @@ import ViewNote from './ViewNote';
 
 const DataList = props => {
   const [showView, setShowView] = useState(false);
-  console.log(props);
-  const {title, note, createdAt, reminderDate, reminderTime} = props.item;
+  const {title, note, createdAt, key, reminderDate, reminderTime} = props.item;
   return (
     <View style={styles.cardsContainer}>
       <View
@@ -17,22 +16,16 @@ const DataList = props => {
           styles.cardInfo,
           {backgroundColor: props.index % 2 === 0 ? '#78e08f' : '#b8e994'},
         ]}>
-        <Text style={{fontSize: 18}}>{title}</Text>
-        <Text style={{fontSize: 14}}>Created: {createdAt}</Text>
+        <Text style={styles.textTitle}>{title}</Text>
+        <Text style={styles.textCreated}>Created: {createdAt}</Text>
         {reminderDate !== '' || reminderTime !== '' ? (
           <Text>
             Reminder: {reminderDate} {reminderTime}
           </Text>
         ) : null}
       </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-        }}>
-        <TouchableOpacity onPress={() => props.deleteData(props.index)}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => props.deleteData(key)}>
           <FontAwesome5 name="trash-alt" color="#d63031" size={30} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setShowView(!showView)}>
@@ -59,7 +52,6 @@ const styles = StyleSheet.create({
   },
   cardInfo: {
     flex: 3,
-    // backgroundColor: '#78e08f',
     justifyContent: 'space-evenly',
     paddingLeft: 20,
     borderTopLeftRadius: 40,
@@ -67,22 +59,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
+  textTitle: {
+    fontSize: 18,
+  },
+  textCreated: {
+    fontSize: 14,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
 });
-
-{
-  /* <ViewNote
-title={title}
-note={note}
-setShowView={setShowView}
-showView={showView}
-/> */
-}
-
-const mapStateToProps = state => {
-  return {
-    add: state.add,
-  };
-};
 
 export default connect(
   null,

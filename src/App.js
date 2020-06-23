@@ -14,13 +14,12 @@ const App = () => {
     <Provider store={store}>
       <View style={styles.mainContainer}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>Todo List</Text>
+          <Text style={styles.headerText}>Note List</Text>
           <Text style={styles.headerText}>App</Text>
         </View>
         <View style={styles.contentContainer}>
           <StateData />
           <View style={styles.buttonToForm}>
-            {/* <FormInput /> */}
             <FormNote />
             <FloatingIconButton />
           </View>

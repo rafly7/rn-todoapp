@@ -1,22 +1,62 @@
-import {name_input, address_input} from '../src/utils/constType';
-import {handleNameInput, handleAddressInput} from '../src/action/index';
+import {
+  title_input,
+  note_input,
+  date_input,
+  time_input,
+} from '../src/utils/constType';
+import {
+  handleTitleInput,
+  handleNoteInput,
+  handleDate,
+  handleTime,
+} from '../src/action/index';
 
-describe('FormInput action', () => {
-  it('handleNameInput should return new action if receiving input', () => {
-    const name = 'Hello';
+let mockDateandTime;
+
+describe('FormNote action', () => {
+  it('handleTitleInput should return new action if receiving input', () => {
+    const title = 'Project authenticate';
     const expectedAction = {
-      type: name_input,
-      payload: name,
+      type: title_input,
+      payload: title,
     };
-    expect(handleNameInput(name)).toEqual(expectedAction);
+    expect(handleTitleInput(title)).toEqual(expectedAction);
   });
 
-  it('handleAddressInput should return new action if receiving input', () => {
-    const address = 'bip';
+  it('handleNoteInput should return new action if receiving input', () => {
+    const notes =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus mollis ligula, accumsan fringilla';
     const expectedAction = {
-      type: address_input,
-      payload: address,
+      type: note_input,
+      payload: notes,
     };
-    expect(handleAddressInput(address)).toEqual(expectedAction);
+    expect(handleNoteInput(notes)).toEqual(expectedAction);
+  });
+
+  describe('FormNote action with mocking', () => {
+    beforeAll(() => {
+      const miliseconds = 1693807460236;
+      mockDateandTime = () => {
+        return new Date(miliseconds);
+      };
+    });
+
+    it('handleDate should return new action if receiving input', () => {
+      let date = mockDateandTime();
+      const expectedAction = {
+        type: date_input,
+        payload: date,
+      };
+      expect(handleDate(date)).toEqual(expectedAction);
+    });
+
+    it('handleTimr should return new action if receiving input', () => {
+      let time = mockDateandTime();
+      const expectedAction = {
+        type: time_input,
+        payload: time,
+      };
+      expect(handleTime(time)).toEqual(expectedAction);
+    });
   });
 });

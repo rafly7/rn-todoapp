@@ -1,0 +1,88 @@
+import {add_data, delete_data} from '../src/utils/constType';
+import DataReducer from '../src/reducer/DataReducer';
+import {v1 as uuidv1} from 'react-native-uuid';
+import {FormatDate, FormatTime} from '../src/logic/Format';
+
+let mockUuidV1;
+let mockDate;
+let mockTime;
+let mockDateNow;
+
+describe('Add Data Reducer', () => {
+  it('Should return default state', () => {
+    const newState = DataReducer(undefined, {});
+    expect(newState).toEqual([]);
+  });
+
+  beforeEach(() => {
+    const miliseconds = 1693807460236;
+    mockUuidV1 = () => {
+      return uuidv1();
+    };
+
+    mockDateNow = () => {
+      return FormatDate(new Date().getTime());
+    };
+
+    mockDate = () => {
+      return FormatDate(new Date(miliseconds));
+    };
+
+    mockTime = () => {
+      return FormatTime(new Date(miliseconds));
+    };
+  });
+
+  it('Add Data Should return new state if receiving type', () => {
+    const uuid = mockUuidV1();
+    const dateNow = mockDateNow();
+    const date = mockDate();
+    const time = mockTime();
+    const title = 'Dan';
+    const note = 'bip';
+
+    const data = [
+      {
+        key: uuid,
+        createdAt: dateNow,
+        title: title,
+        note: note,
+        reminderDate: date,
+        reminderTime: time,
+      },
+    ];
+    const newState = DataReducer(undefined, {
+      type: add_data,
+      payload_id: uuid,
+      payload_title: title,
+      payload_note: note,
+      payload_date: date,
+      payload_time: time,
+    });
+    expect(newState).toEqual(data);
+  });
+
+  // it('if one of Data empty string Should return default state', () => {
+  //   const emptyArr = [];
+  //   const title = 'Dan',
+  //     note = '';
+  //   const newState = DataReducer(undefined, {
+  //     type: add_data,
+  //     payload_title: title,
+  //     payload_note: note,
+  //   });
+  //   expect(newState).toEqual(emptyArr);
+  // });
+});
+
+// describe('Delete data', () => {
+//   let mockUuidV1;
+//   let emptyArr = []
+//   beforeAll(() => {
+//     mockUuidV1 = () => {
+//       const uuidv1 = uuidv1();
+//       return uuidv1;
+//     };
+//     const
+//   });
+// });

@@ -11,9 +11,9 @@ export const addData = (id, title, note, date, time) => {
   };
 };
 
-export const deleteData = index => {
+export const deleteData = key => {
   return {
     type: delete_data,
-    index: index,
+    key: key,
   };
 };

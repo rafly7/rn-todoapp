@@ -58,5 +58,7 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-#coverafe
+#coverage
+coverage/*
 /coverage/
+/coverage/lcov-report/

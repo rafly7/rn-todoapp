@@ -1,24 +1,45 @@
 import {add_data, delete_data} from '../src/utils/constType';
 import {addData, deleteData} from '../src/action/DataAction';
+import {v1 as uuidv1} from 'react-native-uuid';
+import {FormatDate, FormatTime} from '../src/logic/Format';
+
+let mockUuidV1;
+let mockDate;
+let mockTime;
 
 describe('Data action', () => {
-  it('Add Data Action Should return new action if receiving parameter', () => {
-    const name = 'hello',
-      address = 'bogor';
-    const newAction = {
-      type: add_data,
-      payload_name: name,
-      payload_address: address,
+  beforeAll(() => {
+    const miliseconds = 1693807460236;
+    mockUuidV1 = () => {
+      return uuidv1();
     };
-    expect(addData(name, address)).toEqual(newAction);
+    mockDate = () => FormatDate(new Date(miliseconds));
+    mockTime = () => FormatTime(new Date(miliseconds));
+  });
+  it('addData should return new action if receiving input parameter', () => {
+    const uuid = mockUuidV1();
+    const date = mockDate();
+    const time = mockTime();
+    const note = 'Create Project';
+    const title =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus mollis ligula, accumsan fringilla tellus mattis at';
+    const expectedAction = {
+      type: add_data,
+      payload_id: uuid,
+      payload_title: title,
+      payload_note: note,
+      payload_date: date,
+      payload_time: time,
+    };
+    expect(addData(uuid, title, note, date, time)).toEqual(expectedAction);
   });
 
-  it('Delete Data Action Should return new action if receiving parameter', () => {
-    const index = 0;
-    const newAction = {
+  it('deleteData should return new action if receiving input parameter', () => {
+    const uuid = mockUuidV1();
+    const expectedAction = {
       type: delete_data,
-      index: index,
+      key: uuid,
     };
-    expect(deleteData(index)).toEqual(newAction);
+    expect(deleteData(uuid)).toEqual(expectedAction);
   });
 });

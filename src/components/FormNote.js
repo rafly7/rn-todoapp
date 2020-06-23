@@ -1,99 +1,69 @@
 import React, {useState} from 'react';
-import {Modal, View, Text, TouchableOpacity, Keyboard} from 'react-native';
+import {
+  Modal,
+  View,
+  Text,
+  TouchableOpacity,
+  Keyboard,
+  StyleSheet,
+} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {connect} from 'react-redux';
-import IsShowModal from '../action/IsShowAction';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {v1 as uuidv1} from 'react-native-uuid';
-import {
-  handleTitleInput,
-  handleNoteInput,
-  handleDate,
-} from '../action/FormInputAction';
+import {handleTitleInput, handleNoteInput, isShowModal} from '../action';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 import {FormatDate, FormatTime} from '../logic/Format';
 import {addData} from '../action/DataAction';
+import ButtonFormNote from './ButtonFormNote';
 
 const FormNote = props => {
   const {
-    IsShowModal,
+    isShowModal,
     show,
     handleTitleInput,
     handleNoteInput,
-    handleDate,
     title,
     note,
     date,
     time,
     addData,
-    add,
   } = props;
   const [showDate, setShowDate] = useState(false);
   const [valueDate, setValueDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [valueTime, setValueTime] = useState(false);
-  // console.trace();
+
   return (
     <Modal animationType="slide" visible={show} hardwareAccelerated={true}>
-      <View style={{flex: 1, marginTop: 20, marginRight: 20}}>
-        <View
-          style={{
-            alignItems: 'flex-end',
-            marginBottom: 10,
-          }}>
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              style={{paddingRight: 20}}
-              onPress={() => IsShowModal()}>
-              <Feather name="delete" size={25} color="#eb2f06" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              disabled={title.length > 0 && note.length > 0 ? false : true}
-              onPress={() => [
-                IsShowModal(),
-                setValueTime(false),
-                setValueDate(false),
-                addData(
-                  uuidv1(),
-                  title,
-                  note,
-                  valueDate ? FormatDate(date) : '',
-                  valueTime ? FormatTime(time) : '',
-                ),
-              ]}>
-              <Text style={{color: '#3498db', fontSize: 17}}>SAVE</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={{flex: 1}}>
-          <View style={{flexDirection: 'row', paddingLeft: 12}}>
+      <View style={styles.modalContainer}>
+        <ButtonFormNote
+          valueDate={valueDate}
+          valueTime={valueTime}
+          setValueDate={setValueDate}
+          setValueTime={setValueTime}
+        />
+        <View style={styles.mainContainer}>
+          <View style={styles.buttonContainerPicker}>
             <FontAwesome name="tag" color="#2980b9" size={25} />
             <TextInput
               placeholder="Title"
-              style={{
-                backgroundColor: 'transparent',
-                flex: 1,
-                fontSize: 20,
-                height: 30,
-                fontWeight: 'bold',
-              }}
+              style={styles.textInputTitle}
               maxLength={20}
               onChangeText={text => handleTitleInput(text)}
             />
           </View>
           <View
-            style={{
-              flexDirection: 'row',
-              paddingLeft: 12,
-              marginTop: 15,
-              marginBottom: 10,
-            }}>
+            style={[
+              styles.buttonContainerPicker,
+              {marginTop: 15, marginBottom: 10},
+            ]}>
             <>
               <Feather name="calendar" color="#2980b9" size={25} />
               <TouchableOpacity
-                style={{flex: 1}}
+                style={styles.mainContainer}
                 onPress={() => [setShowDate(!showDate), Keyboard.dismiss()]}>
                 {showDate ? (
                   <DatePicker
@@ -104,12 +74,7 @@ const FormNote = props => {
                 <TextInput
                   placeholder="Reminder"
                   editable={false}
-                  style={{
-                    flex: 1,
-                    height: 25,
-                    fontSize: 20,
-                    backgroundColor: 'transparent',
-                  }}
+                  style={styles.buttonReminder}
                   value={valueDate ? FormatDate(props.date) : ''}
                 />
               </TouchableOpacity>
@@ -120,10 +85,10 @@ const FormNote = props => {
                 name="clock"
                 color="#2980b9"
                 size={25}
-                style={{paddingLeft: 10}}
+                style={styles.iconClock}
               />
               <TouchableOpacity
-                style={{flex: 1}}
+                style={styles.mainContainer}
                 onPress={() => [setShowTime(!showTime), Keyboard.dismiss()]}>
                 {showTime ? (
                   <TimePicker
@@ -134,12 +99,7 @@ const FormNote = props => {
                 <TextInput
                   placeholder="Reminder"
                   editable={false}
-                  style={{
-                    flex: 1,
-                    height: 25,
-                    fontSize: 20,
-                    backgroundColor: 'transparent',
-                  }}
+                  style={styles.buttonReminder}
                   value={valueTime ? FormatTime(props.time) : ''}
                 />
               </TouchableOpacity>
@@ -148,7 +108,7 @@ const FormNote = props => {
           <TextInput
             placeholder="Notes"
             numberOfLines={50}
-            style={{backgroundColor: 'transparent'}}
+            style={styles.background}
             scrollEnabled={true}
             multiline={true}
             onChangeText={text => handleNoteInput(text)}
@@ -170,7 +130,55 @@ const mapStateToProps = state => {
   };
 };
 
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
+  modalContainer: {
+    flex: 1,
+    marginTop: 20,
+    marginRight: 20,
+  },
+  buttonContainer: {
+    alignItems: 'flex-end',
+    marginBottom: 10,
+  },
+  buttonSubContainer: {
+    flexDirection: 'row',
+  },
+  buttonBack: {
+    paddingRight: 20,
+  },
+  buttonText: {
+    color: '#3498db',
+    fontSize: 17,
+  },
+  buttonContainerPicker: {
+    flexDirection: 'row',
+    paddingLeft: 12,
+  },
+  textInputTitle: {
+    backgroundColor: 'transparent',
+    flex: 1,
+    fontSize: 20,
+    height: 30,
+    fontWeight: 'bold',
+  },
+  buttonReminder: {
+    flex: 1,
+    height: 25,
+    fontSize: 20,
+    backgroundColor: 'transparent',
+  },
+  iconClock: {
+    paddingLeft: 10,
+  },
+  background: {
+    backgroundColor: 'transparent',
+  },
+});
+
 export default connect(
   mapStateToProps,
-  {IsShowModal, handleNoteInput, handleTitleInput, addData},
+  {isShowModal, handleNoteInput, handleTitleInput, addData},
 )(FormNote);
