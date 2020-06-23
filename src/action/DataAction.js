@@ -1,12 +1,13 @@
 import {add_data, delete_data} from '../utils/constType';
 
-export const addData = (id, name, address, date) => {
+export const addData = (id, title, note, date, time) => {
   return {
     type: add_data,
     payload_id: id,
-    payload_name: name,
-    payload_address: address,
+    payload_title: title,
+    payload_note: note,
     payload_date: date,
+    payload_time: time,
   };
 };
 

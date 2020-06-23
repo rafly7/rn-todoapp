@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import isShowModal from '../action/IsShowAction';
 import {handleNameInput, handleAddressInput, addData} from '../action/index';
-import FormatDate from '../logic/FormatDate';
+import FormatDate from '../logic/Format';
 // const process = require('process');
 import {v1 as uuidv1} from 'react-native-uuid';
 // function getNanoSecTime() {

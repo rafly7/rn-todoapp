@@ -1,20 +1,28 @@
 import {add_data, delete_data} from '../utils/constType';
-
-export default (state = [], action) => {
+import {FormatDate} from '../logic/Format';
+const initialstate = [
+  {
+    title: 'Create Authentication',
+    createdAt: '2020/06/22',
+    key: '1ed4f4b0-b444-11ea-9cae-e92674e97a1b',
+    note: 'Tt',
+    reminderDate: '2020/06/30',
+    reminderTime: '16:20',
+  },
+];
+export default (state = initialstate, action) => {
   switch (action.type) {
     case add_data:
-      if (
-        action.payload_name !== '' &&
-        action.payload_address !== '' &&
-        action.payload_date
-      ) {
+      if (action.payload_note !== '' && action.payload_title !== '') {
         return [
           ...state,
           {
-            id: action.payload_id,
-            name: action.payload_name,
-            address: action.payload_address,
-            date: action.payload_date,
+            key: action.payload_id,
+            title: action.payload_title,
+            note: action.payload_note,
+            createdAt: FormatDate(new Date()),
+            reminderDate: action.payload_date,
+            reminderTime: action.payload_time,
           },
         ];
       }

@@ -1,23 +1,24 @@
 import React from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {connect} from 'react-redux';
-import {handleDate} from '../action';
+import {handleTime} from '../action';
 
-const DatePicker = props => {
+const TimePicker = props => {
   const onChange = (event, selectDate) => {
-    const currentDate = selectDate || props.date;
+    const currentDate = selectDate || props.time;
     props.handleCancel(false);
     console.log(typeof selectDate !== 'undefined');
     if (typeof selectDate !== 'undefined') {
       props.initValue(true);
     }
-    props.handleDate(currentDate);
+    props.handleTime(currentDate);
   };
 
   return (
     <DateTimePicker
-      mode="date"
-      value={props.date}
+      mode="time"
+      is24Hour={true}
+      value={props.time}
       display="default"
       onChange={onChange}
     />
@@ -26,11 +27,11 @@ const DatePicker = props => {
 
 const mapStateToProps = state => {
   return {
-    date: state.val.date,
+    time: state.val.time,
   };
 };
 
 export default connect(
   mapStateToProps,
-  {handleDate},
-)(DatePicker);
+  {handleTime},
+)(TimePicker);
