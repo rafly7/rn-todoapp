@@ -31,6 +31,7 @@
     "jest": "^24.9.0",
     "jest-sonar-reporter": "^2.0.0",
     "metro-react-native-babel-preset": "0.58.0",
+    "react-native-testing-library": "^2.1.0",
     "react-test-renderer": "16.11.0",
     "sonarqube-scanner": "^2.6.0"
   },

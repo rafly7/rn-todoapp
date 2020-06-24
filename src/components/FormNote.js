@@ -35,7 +35,7 @@ const FormNote = props => {
   const [valueDate, setValueDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [valueTime, setValueTime] = useState(false);
-
+  // console.log(date)
   return (
     <Modal animationType="slide" visible={show} hardwareAccelerated={true}>
       <View style={styles.modalContainer}>

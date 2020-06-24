@@ -6,6 +6,7 @@ import {v1 as uuidv1} from 'react-native-uuid';
 import {
   handleTitleInput,
   handleNoteInput,
+  handleClear,
   isShowModal,
   addData,
 } from '../action';
@@ -21,8 +22,7 @@ const ButtonFormNote = props => {
     valueTime,
     setValueDate,
     setValueTime,
-    handleTitleInput,
-    handleNoteInput,
+    handleClear,
     isShowModal,
     addData,
   } = props;
@@ -31,21 +31,12 @@ const ButtonFormNote = props => {
       <View style={styles.buttonSubContainer}>
         <TouchableOpacity
           style={styles.buttonBack}
-          onPress={() => [
-            isShowModal(),
-            handleTitleInput(''),
-            handleNoteInput(''),
-          ]}>
+          onPress={() => [handleClear(), isShowModal()]}>
           <Feather name="delete" size={25} color="#eb2f06" />
         </TouchableOpacity>
         <TouchableOpacity
           disabled={title.length > 0 && note.length > 0 ? false : true}
           onPress={() => [
-            isShowModal(),
-            handleTitleInput(''),
-            handleNoteInput(''),
-            setValueTime(false),
-            setValueDate(false),
             addData(
               uuidv1(),
               title,
@@ -53,6 +44,10 @@ const ButtonFormNote = props => {
               valueDate ? FormatDate(date) : '',
               valueTime ? FormatTime(time) : '',
             ),
+            isShowModal(),
+            handleClear(),
+            setValueTime(false),
+            setValueDate(false),
           ]}>
           <Text
             style={[
@@ -128,5 +123,5 @@ const styles = StyleSheet.create({
 
 export default connect(
   mapStateToProps,
-  {handleTitleInput, handleNoteInput, isShowModal, addData},
+  {handleTitleInput, handleNoteInput, isShowModal, addData, handleClear},
 )(ButtonFormNote);

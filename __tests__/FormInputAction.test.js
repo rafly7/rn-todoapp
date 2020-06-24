@@ -3,12 +3,14 @@ import {
   note_input,
   date_input,
   time_input,
+  clear_input,
 } from '../src/utils/constType';
 import {
   handleTitleInput,
   handleNoteInput,
   handleDate,
   handleTime,
+  handleClear,
 } from '../src/action/index';
 
 let mockDateandTime;
@@ -31,6 +33,13 @@ describe('FormNote action', () => {
       payload: notes,
     };
     expect(handleNoteInput(notes)).toEqual(expectedAction);
+  });
+
+  it('handleClear should return new action if receiving input', () => {
+    const expectedAction = {
+      type: clear_input,
+    };
+    expect(handleClear()).toEqual(expectedAction);
   });
 
   describe('FormNote action with mocking', () => {

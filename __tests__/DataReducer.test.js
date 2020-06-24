@@ -15,13 +15,16 @@ describe('Add Data Reducer', () => {
   });
 
   beforeEach(() => {
-    const miliseconds = 1693807460236;
     mockUuidV1 = () => {
       return uuidv1();
     };
+  });
+
+  beforeAll(() => {
+    const miliseconds = 1693807460236;
 
     mockDateNow = () => {
-      return FormatDate(new Date().getTime());
+      return FormatDate(new Date());
     };
 
     mockDate = () => {
@@ -62,27 +65,46 @@ describe('Add Data Reducer', () => {
     expect(newState).toEqual(data);
   });
 
-  // it('if one of Data empty string Should return default state', () => {
-  //   const emptyArr = [];
-  //   const title = 'Dan',
-  //     note = '';
-  //   const newState = DataReducer(undefined, {
-  //     type: add_data,
-  //     payload_title: title,
-  //     payload_note: note,
-  //   });
-  //   expect(newState).toEqual(emptyArr);
-  // });
-});
+  it('Add Data Should return empty array if note or title is empty string', () => {
+    const uuid = mockUuidV1();
+    const title = 'XYZ';
+    const note = 'asdasdnljndw';
+    const data = [];
+    let newState = DataReducer(undefined, {
+      type: add_data,
+      payload_id: uuid,
+      payload_title: title,
+      payload_note: '',
+      payload_date: mockDate(),
+      payload_time: mockTime(),
+    });
+    expect(newState).toEqual(data);
+    newState = DataReducer(undefined, {
+      type: add_data,
+      payload_id: uuid,
+      payload_title: '',
+      payload_note: note,
+      payload_date: mockDate(),
+      payload_time: mockTime(),
+    });
+    expect(newState).toEqual(data);
+  });
 
-// describe('Delete data', () => {
-//   let mockUuidV1;
-//   let emptyArr = []
-//   beforeAll(() => {
-//     mockUuidV1 = () => {
-//       const uuidv1 = uuidv1();
-//       return uuidv1;
-//     };
-//     const
-//   });
-// });
+  it('Delete Data Should return empty array if receiving type', () => {
+    const initialstate = [
+      {
+        key: mockUuidV1(),
+        createdAt: mockDateNow(),
+        title: 'Create Authentication',
+        note: 'Tt',
+        reminderDate: '2021/06/30',
+        reminderTime: '16:20',
+      },
+    ];
+    const newState = DataReducer(initialstate, {
+      type: delete_data,
+      key: mockUuidV1(),
+    });
+    expect(newState).toEqual([]);
+  });
+});
