@@ -1,0 +1,158 @@
+import {
+  title_input,
+  note_input,
+  date_input,
+  time_input,
+  clear_input,
+} from '../src/utils/constType';
+import FormInputReducer from '../src/reducer/FormInputReducer';
+
+let mockDate;
+let mockTime;
+
+describe('FormInput reducer', () => {
+  beforeEach(() => {
+    const miliseconds = 1693807460236;
+    mockDate = () => new Date(miliseconds);
+    mockTime = () => new Date(miliseconds);
+  });
+
+  it('Should return default state', () => {
+    const state = {
+      title: '',
+      note: '',
+      date: mockDate(),
+      time: mockTime(),
+    };
+    const newState = FormInputReducer(undefined, {});
+    expect(newState).toEqual(state);
+  });
+
+  it('Should return new state title if receiving type', () => {
+    const title = 'Firebasestore';
+    const state = {
+      title: title,
+      note: '',
+      date: mockDate(),
+      time: mockTime(),
+    };
+    const newState = FormInputReducer(undefined, {
+      type: title_input,
+      payload: title,
+    });
+    expect(newState.title).toEqual(title);
+    expect(newState).toEqual(state);
+  });
+
+  it('Should return new state note if receiving type', () => {
+    const note = 'Firebasestore';
+    const state = {
+      title: '',
+      note: note,
+      date: mockDate(),
+      time: mockTime(),
+    };
+    const newState = FormInputReducer(undefined, {
+      type: note_input,
+      payload: note,
+    });
+    expect(newState.note).toEqual(note);
+    expect(newState).toEqual(state);
+  });
+
+  it('Should return new state date if receiving type', () => {
+    const state = {
+      title: '',
+      note: '',
+      date: mockDate(),
+      time: mockTime(),
+    };
+    const newState = FormInputReducer(undefined, {
+      type: date_input,
+      payload: mockDate(),
+    });
+    expect(newState.date).toEqual(mockDate());
+    expect(newState).toEqual(state);
+  });
+
+  it('Should return new state time if receiving type', () => {
+    const state = {
+      title: '',
+      note: '',
+      date: mockDate(),
+      time: mockTime(),
+    };
+    const newState = FormInputReducer(undefined, {
+      type: time_input,
+      payload: mockTime(),
+    });
+    expect(newState.time).toEqual(mockTime());
+    expect(newState).toEqual(state);
+  });
+
+  /**
+   * Clear input not finished
+   */
+  // describe('clear input', () => {
+  //   beforeAll(() => {
+  //     const title = 'firebase';
+  //     const note = 'socket';
+  //     jest.fn(() =>
+  //       FormInputReducer(undefined, {
+  //         type: title_input,
+  //         payload: title,
+  //       }),
+  //     );
+
+  //     jest.fn(() =>
+  //       FormInputReducer(undefined, {
+  //         type: note_input,
+  //         payload: note,
+  //       }),
+  //     );
+  //   });
+
+  //   it('Should return empty string title and note if receiving type', () => {
+  //     const state = {
+  //       title: '',
+  //       note: '',
+  //       date: mockDate(),
+  //       time: mockTime(),
+  //     };
+
+  //     const title = 'firebase';
+  //     const note = 'socket';
+  //     FormInputReducer(undefined, {
+  //       type: title_input,
+  //       payload: title,
+  //     });
+  //     FormInputReducer(undefined, {
+  //       type: note_input,
+  //       payload: note,
+  //     });
+  //     const newState = FormInputReducer(undefined, {
+  //       type: date_input,
+  //       payload: mockDate(),
+  //     });
+  //     expect(newState).toEqual(true);
+  //   });
+  // });
+
+  // it('State name Should return new state if receiving type', () => {
+  //   const name = 'hello';
+  //   const newState = FormInputReducer(undefined, {
+  //     type: name_input,
+  //     payload: name,
+  //   });
+  //   expect(newState.name).toEqual(name);
+  // });
+
+  // it('State address Should return new state if receiving type', () => {
+  //   const address = 'bogor';
+  //   const newState = FormInputReducer(undefined, {
+  //     type: address_input,
+  //     payload: address,
+  //   });
+  //   expect(newState.address).toEqual(address);
+  // });
+});

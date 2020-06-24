@@ -3,6 +3,7 @@ import {
   note_input,
   date_input,
   time_input,
+  clear_input,
 } from '../utils/constType';
 
 const initialstate = {
@@ -33,6 +34,12 @@ export default (state = initialstate, action) => {
       return {
         ...state,
         time: action.payload,
+      };
+    case clear_input:
+      return {
+        ...state,
+        title: '',
+        note: '',
       };
     default:
       return state;

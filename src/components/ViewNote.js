@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, View, TouchableOpacity} from 'react-native';
+import {Modal, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -10,32 +10,22 @@ const ViewNote = props => {
       animationType="fade"
       visible={props.showView}
       hardwareAccelerated={true}>
-      <View style={{flex: 1, marginTop: 20, marginRight: 20}}>
-        <View
-          style={{
-            alignItems: 'flex-end',
-            marginBottom: 10,
-          }}>
-          <View style={{flexDirection: 'row'}}>
+      <View style={styles.modalContainer}>
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonSubContainer}>
             <TouchableOpacity
-              style={{paddingRight: 20}}
+              style={styles.buttonBack}
               onPress={() => props.setShowView(false)}>
               <Feather name="delete" size={25} color="#eb2f06" />
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{flex: 1}}>
-          <View style={{flexDirection: 'row', paddingLeft: 12}}>
+        <View style={styles.textinputContainer}>
+          <View style={styles.textinputSubContainer}>
             <FontAwesome name="tag" color="#2980b9" size={25} />
             <TextInput
               placeholder="Title"
-              style={{
-                backgroundColor: 'transparent',
-                flex: 1,
-                fontSize: 20,
-                height: 30,
-                fontWeight: 'bold',
-              }}
+              style={styles.textInput}
               editable={false}
               value={props.title}
             />
@@ -54,5 +44,37 @@ const ViewNote = props => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    marginTop: 20,
+    marginRight: 20,
+  },
+  buttonContainer: {
+    alignItems: 'flex-end',
+    marginBottom: 10,
+  },
+  buttonSubContainer: {
+    flexDirection: 'row',
+  },
+  buttonBack: {
+    paddingRight: 20,
+  },
+  textinputContainer: {
+    flex: 1,
+  },
+  textinputSubContainer: {
+    flexDirection: 'row',
+    paddingLeft: 12,
+  },
+  textInput: {
+    backgroundColor: 'transparent',
+    flex: 1,
+    fontSize: 20,
+    height: 30,
+    fontWeight: 'bold',
+  },
+});
 
 export default ViewNote;

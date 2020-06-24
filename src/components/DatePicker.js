@@ -7,7 +7,7 @@ const DatePicker = props => {
   const onChange = (event, selectDate) => {
     const currentDate = selectDate || props.date;
     props.handleCancel(false);
-    console.log(typeof selectDate !== 'undefined');
+    // console.log(typeof selectDate !== 'undefined');
     if (typeof selectDate !== 'undefined') {
       props.initValue(true);
     }

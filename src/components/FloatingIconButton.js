@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {connect} from 'react-redux';
-import isShowModal from '../action/IsShowAction';
+import {isShowModal} from '../action';
 
 const FloatingIconButton = props => {
   return (
@@ -27,13 +27,8 @@ const styles = StyleSheet.create({
     height: 70,
   },
 });
-const mapStateToProps = state => {
-  return {
-    show: state.show,
-  };
-};
 
 export default connect(
-  mapStateToProps,
+  null,
   {isShowModal},
 )(FloatingIconButton);
